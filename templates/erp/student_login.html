@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Login</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #2980b9;
+            color: white;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin-top: 10px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+<div class="card">
+    <h2>Student Login</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        Roll Number:
+        <input type="text" name="roll" required>
+        <br><br>
+        <button type="submit">View Marks</button>
+    </form>
+
+    {% if student %}
+        <h3>Report Card</h3>
+
+        <p><b>Name:</b> {{ student.name }}</p>
+
+        <table>
+            <tr><th>Subject</th><th>Marks</th></tr>
+            <tr><td>Maths</td><td>{{ student.maths }}</td></tr>
+            <tr><td>Physics</td><td>{{ student.physics }}</td></tr>
+            <tr><td>Chemistry</td><td>{{ student.chemistry }}</td></tr>
+            <tr><th>Total</th><th>{{ total }}</th></tr>
+            <tr><th>Percentage</th><th>{{ percentage }}%</th></tr>
+        </table>
+    {% endif %}
+</div>
+</body>
+</html>

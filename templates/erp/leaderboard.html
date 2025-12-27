@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .board {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .rank {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .gold {
+            background: linear-gradient(to right, #FFD700, #FFC107);
+        }
+
+        .silver {
+            background: linear-gradient(to right, #C0C0C0, #E0E0E0);
+        }
+
+        .bronze {
+            background: linear-gradient(to right, #CD7F32, #E3A857);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="board">
+        <h2>🎉 Congratulations Toppers 🎉</h2>
+
+        {% for s in students %}
+            <div class="rank 
+                {% if forloop.counter == 1 %}gold
+                {% elif forloop.counter == 2 %}silver
+                {% elif forloop.counter == 3 %}bronze
+                {% endif %}
+            ">
+                {{ forloop.counter }}. {{ s.name }} – {{ s.percentage }}%
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
